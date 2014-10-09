@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+OpenIDE-Module: org.ov7a.layout
+OpenIDE-Module-Localizing-Bundle: org/ov7a/layout/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+
