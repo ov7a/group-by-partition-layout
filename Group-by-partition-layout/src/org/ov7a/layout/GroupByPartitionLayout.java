@@ -54,7 +54,7 @@ public class GroupByPartitionLayout implements Layout {
         //assume all nodes have same size
         float nodeSize = nodes[0].getNodeData().getSize();
 
-        HashMap<Double, ArrayList<Node>> groupedNodes = GroupByPartition(nodes, column);
+        HashMap<String, ArrayList<Node>> groupedNodes = GroupByPartition(nodes, column);
         int groupsCount = groupedNodes.size();
         //get max size of box 
         //get original center x = max_x-min_x;
@@ -151,10 +151,10 @@ public class GroupByPartitionLayout implements Layout {
         return layoutBuilder;
     }
 
-    private HashMap<Double, ArrayList<Node>> GroupByPartition(Node[] nodes, AttributeColumn column) {
-        HashMap<Double, ArrayList<Node>> result = new HashMap();
+    private HashMap<String, ArrayList<Node>> GroupByPartition(Node[] nodes, AttributeColumn column) {
+        HashMap<String, ArrayList<Node>> result = new HashMap();
         for (Node n : nodes) {
-            Double curValue = getAsDouble(n, column);
+            String curValue = getAsString(n, column);
             if (!result.containsKey(curValue)) {
                 result.put(curValue, new ArrayList<Node>());
             }
@@ -163,6 +163,15 @@ public class GroupByPartitionLayout implements Layout {
         return result;
     }
 
+    public String getAsString(Node o1, AttributeColumn column) {
+        Object value = (((AttributeRow) (o1.getNodeData().getAttributes())).getValue(column));
+        if (value == null) {
+            return "";
+        } else {
+            return value.toString();
+        }
+    }
+    
     public double getAsDouble(Node o1, AttributeColumn column) {
         Object value = (((AttributeRow) (o1.getNodeData().getAttributes())).getValue(column));
         if (value == null) {

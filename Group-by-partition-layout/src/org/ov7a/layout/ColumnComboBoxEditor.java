@@ -49,9 +49,9 @@ public class ColumnComboBoxEditor extends PropertyEditorSupport {
         Map<String, String> map = new HashMap<String, String>();
         for (AttributeColumn c : at.getColumns()) {
 // only int and double type of attributes are permited
-            if (c.getType().equals(AttributeType.DOUBLE) || c.getType().equals(AttributeType.INT)) {
+          //  if (c.getType().equals(AttributeType.DOUBLE) || c.getType().equals(AttributeType.INT)) {
                 map.put(c.getId(), c.getTitle());
-            }
+          //  }
         }
         return map;
     }
